@@ -44,9 +44,12 @@ def WriteFullOTAPackage(input_zip, output_zip):
   # change very often.
   script = edify_generator.EdifyGenerator(3, OPTIONS.info_dict)
 
-  metadata = {"post-build": GetBuildProp("ro.build.fingerprint", input_zip),
-              "pre-device": GetBuildProp("ro.product.device", input_zip),
-              "post-timestamp": GetBuildProp("ro.build.date.utc", input_zip),
+  metadata = {"post-build": GetBuildProp("ro.build.fingerprint",
+                                         OPTIONS.info_dict),
+              "pre-device": GetBuildProp("ro.product.device",
+                                         OPTIONS.info_dict),
+              "post-timestamp": GetBuildProp("ro.build.date.utc",
+                                             OPTIONS.info_dict),
               }
 
   device_specific = common.DeviceSpecificParams(
@@ -66,13 +69,29 @@ def WriteFullOTAPackage(input_zip, output_zip):
     script.Unmount("/system")
 
   script.ShowProgress(0.5, 0)
-
+  script.Print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+  script.Print("         *     *         *           *        ")
+  script.Print(" *   *           *        *     *     *   *   ")
+  script.Print("        ___  *       *  _______  _______     *")
+  script.Print("  *    /   \    *      |  _____||   __  |     ")
+  script.Print("      /  _  \    _____ | /   *  |  |__| | *   ")
+  script.Print("     /  |_|  \  |  _  || | *    |  _____/     ")
+  script.Print("  * /  _____  \ | |_| || \_____ | /  *        ")
+  script.Print("   /__/     \__\|_____/|_______||_|   *    *  ")
+  script.Print("            *         *         *             ")
+  script.Print("   *    *        *         *        *      *  ")
+  script.Print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+  script.Print("   <%%% Android open Collective Project %%%>  ")
+  script.Print("          <%%% By TheCollective %%%>          ")
+  script.Print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
+  script.Print("Please Wait While Your Phone Is is Awesomized.")
   if OPTIONS.wipe_user_data:
     script.FormatPartition("/data")
 
   script.Unmount("/system")
   script.FormatPartition("/system")
   script.Mount("/system")
+  script.ShowProgress(0.7, 30);
   script.UnpackPackageDir("recovery", "/system")
   script.UnpackPackageDir("system", "/system")
 

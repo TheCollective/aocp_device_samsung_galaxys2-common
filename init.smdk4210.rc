@@ -1,7 +1,7 @@
 import init.smdk4210.usb.rc
 import init.gps.rc
 
-on early-init
+on init
     export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
     mkdir /storage 0775 system system
@@ -23,17 +23,6 @@ on early-init
 
 # Disable CFQ slice idle delay
     write /sys/block/mmcblk0/queue/iosched/slice_idle 0
-
-# FIXME: permissions for tvout
-    chmod 0777 /dev/graphics/fb0
-    chmod 0777 /dev/graphics/fb10
-    chmod 0777 /dev/graphics/fb11
-    chown media graphics /sys/class/switch/hdmi
-    chmod 0777 /sys/class/switch/hdmi
-
-# FIXME: permission for HDMI audio path
-    chown media audio /sys/class/hdmi_audio/hdmi_audio/hdmi_audio_set_ext
-    chmod 0777 /sys/class/hdmi_audio/hdmi_audio/hdmi_audio_set_ext
 
 on fs
 # mount ext4 partitions
@@ -377,16 +366,6 @@ service iprenew_wlan0 /system/bin/dhcpcd -n
 
 service iprenew_p2p /system/bin/dhcpcd -n
     class main
-    disabled
-    oneshot
-
-# for bluetooth
-service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm --no2bytes --tosleep 50000 \
-    --baudrate 3000000 --use_baudrate_for_download --patchram /system/bin/bcm4330B1.hcd \
-    --scopcm=0,0,0,0,0,0,0,3,3,0  /dev/ttySAC0
-    class main
-    user bluetooth
-    group bluetooth net_bt_admin
     disabled
     oneshot
 
