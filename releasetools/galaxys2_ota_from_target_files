@@ -68,7 +68,6 @@ def WriteFullOTAPackage(input_zip, output_zip):
     script.RunBackup("backup")
     script.Unmount("/system")
 
-  script.ShowProgress(0.5, 0)
   script.Print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
   script.Print("         *     *         *           *        ")
   script.Print(" *   *           *        *     *     *   *   ")
@@ -84,7 +83,7 @@ def WriteFullOTAPackage(input_zip, output_zip):
   script.Print("   <%%% Android open Collective Project %%%>  ")
   script.Print("          <%%% By TheCollective %%%>          ")
   script.Print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-  script.Print("Please Wait While Your Phone Is is Awesomized.")
+  script.Print("  Please Wait While Your Phone Is Awesomized. ")
   if OPTIONS.wipe_user_data:
     script.FormatPartition("/data")
 
