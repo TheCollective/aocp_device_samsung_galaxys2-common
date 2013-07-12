@@ -37,6 +37,7 @@ COMMON_GLOBAL_CFLAGS += -DEXYNOS4210_ENHANCEMENTS
 COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 endif
 
+BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos4
 TARGET_SOC := exynos4210
 TARGET_BOOTLOADER_BOARD_NAME := smdk4210
@@ -69,6 +70,10 @@ TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/galaxys2-common/re
 BOARD_EGL_CFG := device/samsung/galaxys2-common/configs/egl.cfg
 USE_OPENGL_RENDERER := true
 
+# FIMG Acceleration
+BOARD_USES_FIMGAPI := true
+BOARD_USES_SKIA_FIMGAPI := true
+
 # Enable WEBGL in WebKit
 ENABLE_WEBGL := true
 
@@ -88,7 +93,8 @@ BOARD_USE_TINYALSA_AUDIO := true
 BOARD_USE_YAMAHA_MC1N2_AUDIO := true
 
 # RIL
-BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
+BOARD_PROVIDES_LIBRIL := true
+BOARD_MODEM_TYPE := xmm6260
 
 # Camera
 BOARD_USES_PROPRIETARY_LIBFIMC := true
@@ -135,7 +141,7 @@ BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_SUPPRESS_EMMC_WIPE := true
 
-TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys2-common/overlay/include
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys2-common/include
 
 # Charging mode
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
