@@ -25,6 +25,7 @@ TARGET_CPU_SMP := true
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_ARCH_VARIANT_CPU := cortex-a9
+TARGET_CPU_VARIANT := cortex-a9
 ARCH_ARM_HAVE_NEON := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 EXYNOS4210_ENHANCEMENTS := true
@@ -69,6 +70,7 @@ TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/galaxys2-common/re
 # Graphics
 BOARD_EGL_CFG := device/samsung/galaxys2-common/configs/egl.cfg
 USE_OPENGL_RENDERER := true
+BOARD_EGL_NEEDS_LEGACY_FB := true
 
 # FIMG Acceleration
 BOARD_USES_FIMGAPI := true
@@ -132,6 +134,17 @@ BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/s3c-usbgadget/gadget/lun%d/file"
 
+# Selinux
+BOARD_SEPOLICY_DIRS := \
+    device/samsung/galaxys2-common/selinux
+
+BOARD_SEPOLICY_UNION := \
+    device.te \
+    domain.te \
+    file.te \
+    file_contexts \
+    rild.te
+
 # Recovery
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxys2-common/recovery/recovery_keys.c
 BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/galaxys2-common/recovery/graphics.c
@@ -140,6 +153,8 @@ BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_SUPPRESS_EMMC_WIPE := true
+TARGET_RECOVERY_FSTAB := device/samsung/galaxys2-common/rootdir/fstab.smdk4210
+RECOVERY_FSTAB_VERSION := 2
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys2-common/include
 
