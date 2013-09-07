@@ -48,7 +48,6 @@ TARGET_NO_RADIOIMAGE := true
 
 TARGET_PROVIDES_INIT := true
 TARGET_PROVIDES_INIT_TARGET_RC := true
-TARGET_RECOVERY_INITRC := device/samsung/galaxys2-common/rootdir/recovery.rc
 
 BOARD_NAND_PAGE_SIZE := 4096
 BOARD_NAND_SPARE_SIZE := 128
@@ -66,6 +65,9 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 # Releasetools
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := ./device/samsung/galaxys2-common/releasetools/galaxys2_ota_from_target_files
 TARGET_RELEASETOOL_IMG_FROM_TARGET_SCRIPT := ./device/samsung/galaxys2-common/releasetools/galaxys2_img_from_target_files
+
+# Hardware tunables
+BOARD_HARDWARE_CLASS := hardware/samsung/cmhw
 
 # Graphics
 BOARD_EGL_CFG := device/samsung/galaxys2-common/configs/egl.cfg
